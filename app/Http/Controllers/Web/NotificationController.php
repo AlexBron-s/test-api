@@ -10,6 +10,6 @@ class NotificationController extends Controller
 {
     public function index(UnreadNotificationRequest $request)
     {
-        return User::find($request->user_id)->unreadNotifications;
+        return view('notifications', ['notifications' => User::find($request->user_id)->unreadNotifications]);
     }
 }

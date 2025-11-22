@@ -24,7 +24,12 @@ class PostController extends Controller
     public function store(StorePostRequest $request)
     {
         $post = Post::create($request->all());
-        Notification::send(User::all(), new NewPost());
+        Notification::send(User::all(), new NewPost($post));
         return $post;
+    }
+
+    public function show(Post $post)
+    {
+        return $post->toResource();
     }
 }
